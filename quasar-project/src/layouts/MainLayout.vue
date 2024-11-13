@@ -55,10 +55,10 @@ defineOptions({
 
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
+    title: 'Login Page',
+    caption: 'Stranica za log-in',
     icon: 'school',
-    link: 'https://quasar.dev'
+    link: '#/login'
   },
   {
     title: 'Github',
