@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-// Routes
+
 const authRoutes = require('./routes/auth');
 const filmRoutes = require('./routes/films');
 const userRoutes = require('./routes/users');
