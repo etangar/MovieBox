@@ -52,6 +52,7 @@ const login = async () => {
     
     localStorage.setItem('moviebox_token', response.data.token)
     localStorage.setItem('moviebox_user', JSON.stringify(response.data.user))
+    window.location.reload()
     
     alert('Uspješna prijava!')
     router.push('/')
