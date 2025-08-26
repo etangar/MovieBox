@@ -34,14 +34,14 @@ router.post('/', auth, async (req, res) => {
     );
 
     if (existingReview.length > 0) {
-      // Update existing review
+      
       await db.execute(
         'UPDATE ocjena SET vrijednost = ?, datum = CURRENT_TIMESTAMP WHERE korisnik_id = ? AND film_id = ?',
         [vrijednost, user_id, film_id]
       );
       res.json({ message: 'Review updated successfully' });
     } else {
-      // Create new review
+      
       await db.execute(
         'INSERT INTO ocjena (korisnik_id, film_id, vrijednost) VALUES (?, ?, ?)',
         [user_id, film_id, vrijednost]

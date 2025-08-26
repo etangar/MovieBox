@@ -56,10 +56,7 @@ const getAllFilms = async (req, res) => {
     query += ` ORDER BY ${sortField} DESC LIMIT ? OFFSET ?`;
     params.push(parseInt(limit), parseInt(offset));
     console.log('Query:', query);
-console.log('Params:', params);
-console.log('Params count:', params.length);
-console.log('Request query params:', req.query);
-console.log('Type filter:', type);
+
     
 
     const [films] = await db.execute(query, params);

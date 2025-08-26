@@ -106,13 +106,12 @@
         <!-- Add Comment -->
         <q-card v-if="isLoggedIn" class="q-mb-md">
           <q-card-section>
-            <div class="text-h6">Dodaj komentar</div>
-            <q-textarea
-              v-model="newComment"
-              placeholder="Vaš komentar..."
-              rows="3"
-              class="q-mt-md"
-            />
+          <textarea
+          v-model="newComment"
+         placeholder="Vaš komentar..."
+          rows="3"
+          style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; resize: vertical; font-family: inherit; margin-top: 16px;"
+></textarea>
             <q-btn
               label="Objavi"
               color="primary"
