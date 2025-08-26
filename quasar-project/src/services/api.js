@@ -31,6 +31,24 @@ export const adminAPI = {
   deleteUser: (userId) => api.delete(`/admin/users/${userId}`),
   deleteComment: (commentId) => api.delete(`/admin/comments/${commentId}`)
 }
+// Reviews API - dodaj ovo
+export const reviewsAPI = {
+  add: (reviewData) => api.post('/reviews', reviewData),
+  getByFilm: (filmId) => api.get(`/reviews/film/${filmId}`)
+}
+
+// Comments API - dodaj ovo
+export const commentsAPI = {
+  add: (commentData) => api.post('/comments', commentData),
+  getByFilm: (filmId, params) => api.get(`/comments/film/${filmId}`, { params })
+}
+
+// User API - dodaj ovo
+export const userAPI = {
+  getWatchlist: (status) => api.get('/users/watchlist', { params: { status } }),
+  addToWatchlist: (data) => api.post('/users/watchlist', data),
+  removeFromWatchlist: (filmId) => api.delete(`/users/watchlist/${filmId}`)
+}
 
 
 

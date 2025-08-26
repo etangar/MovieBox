@@ -1,6 +1,7 @@
 const express = require('express');
 const { getAllFilms, getFilmById, createFilm } = require('../controllers/filmController');
 const { auth, admin } = require('../middleware/auth');
+const db = require('../config/database');
 
 const router = express.Router();
 

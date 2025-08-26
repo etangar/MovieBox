@@ -31,6 +31,8 @@
               label="Tip"
               filled
               clearable
+            emit-value
+            map-options
               @update:model-value="loadFilms"
             />
           </div>
@@ -42,6 +44,8 @@
               label="Žanr"
               filled
               clearable
+            emit-value
+            map-options
               @update:model-value="loadFilms"
             />
           </div>
@@ -90,7 +94,7 @@
 
           <q-card-section>
             <div class="text-body2 ellipsis-2-lines">
-              {{ film.opis }}
+              {{ film.naslov }}
             </div>
             
             <div class="row justify-between items-center q-mt-sm">
@@ -220,7 +224,17 @@ const loadFilms = async () => {
 }
 
 const goToFilm = (filmId) => {
+  console.log('goToFilm called with ID:', filmId)
+  console.log('Current route:', router.currentRoute.value.path)
+  console.log('Trying to navigate to:', `/film/${filmId}`)
+  
   router.push(`/film/${filmId}`)
+    .then(() => {
+      console.log('Navigation successful')
+    })
+    .catch((error) => {
+      console.error('Navigation failed:', error)
+    })
 }
 
 onMounted(() => {

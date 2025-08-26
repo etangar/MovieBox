@@ -55,18 +55,38 @@ const getAllFilms = async (req, res) => {
     const sortField = validSortFields.includes(sort) ? sort : 'naslov';
     query += ` ORDER BY ${sortField} DESC LIMIT ? OFFSET ?`;
     params.push(parseInt(limit), parseInt(offset));
+    console.log('Query:', query);
+console.log('Params:', params);
+console.log('Params count:', params.length);
+console.log('Request query params:', req.query);
+console.log('Type filter:', type);
+    
 
     const [films] = await db.execute(query, params);
 
     // Get total count for pagination
     let countQuery = 'SELECT COUNT(*) as total FROM film WHERE 1=1';
-    const countParams = params.slice(0, -2); // Remove limit and offset
+    const countParams = []; // Remove limit and offset
     
-    if (search) countQuery += ' AND naslov LIKE ?';
-    if (zanr) countQuery += ' AND zanr LIKE ?';
-    if (godina) countQuery += ' AND godina = ?';
-    if (type) countQuery += ' AND type = ?';
-    
+if (search) {
+  countQuery += ' AND naslov LIKE ?';
+  countParams.push(`%${search}%`);
+}
+
+if (zanr) {
+  countQuery += ' AND zanr LIKE ?';
+  countParams.push(`%${zanr}%`);
+}
+
+if (godina) {
+  countQuery += ' AND godina = ?';
+  countParams.push(godina);
+}
+
+if (type) {
+  countQuery += ' AND type = ?';
+  countParams.push(type);
+}
     const [countResult] = await db.execute(countQuery, countParams);
     const total = countResult[0].total;
 
@@ -104,11 +124,11 @@ const getFilmById = async (req, res) => {
       [id]
     );
 
-    const film = {
-      ...films[0],
-      avg_rating: ratingResult[0].avg_rating ? parseFloat(ratingResult[0].avg_rating.toFixed(1)) : null,
-      total_ratings: ratingResult[0].total_ratings
-    };
+  const film = {
+  ...films[0],
+  avg_rating: ratingResult[0].avg_rating ? parseFloat(ratingResult[0].avg_rating).toFixed(1) : null,
+  total_ratings: ratingResult[0].total_ratings
+};
 
     res.json({ film });
   } catch (error) {

@@ -4,7 +4,7 @@
     <div class="column items-center q-gutter-md text-center">
       <!-- Logo/Header -->
       <div class="text-h2 text-white text-bold">
-        🎬 MovieBox
+         MovieBox
       </div>
       
       <div class="text-h5 text-white text-weight-light">
@@ -76,7 +76,7 @@
 
       <!-- User Greeting -->
       <div v-if="isLoggedIn" class="text-h6 text-white q-mt-xl">
-        Dobro došao/la, {{ user?.first_name || user?.username }}! 👋
+        Dobro došao/la, {{ user?.first_name || user?.username }}! 
       </div>
     </div>
   </q-page>
